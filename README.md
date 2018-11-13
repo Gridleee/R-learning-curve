@@ -44,7 +44,7 @@ Data manipulation
 <ul>
     <li>dplyr: https://github.com/tidyverse/dplyr</li>
     <li>data.table: https://github.com/Rdatatable/data.table</li>
-    <li>https://yihui.name/knitr/</li>
+    <li>Knitr: https://yihui.name/knitr/</li>
 </ul>
 
 
@@ -65,12 +65,12 @@ Visualisation
 Machine learning
 <h4>
 <ul>
-<li>h2o: https://cran.r-project.org/web/packages/h2o/index</li>.html
-<li>prophet; https://github.com/facebook/prophet</li>
+<li>h2o: https://cran.r-project.org/web/packages/h2o/index.html</li>
+<li>prophet: https://github.com/facebook/prophet</li>
 <li>caret: https://cran.r-project.org/web/packages/caret/index.html</li>
-<li>AnomalyDetection; https://github.com/twitter/AnomalyDetection</li>
+<li>AnomalyDetection: https://github.com/twitter/AnomalyDetection</li>
 <li>mlr: https://github.com/mlr-org/mlr</li>
-<li>xgboost; https://github.com/tqchen/xgboost/tree/master/R-package</li>
+<li>xgboost: https://github.com/tqchen/xgboost/tree/master/R-package</li>
 </ul>
 
 
@@ -120,7 +120,7 @@ The ide I used, I also likes eclipse with statsEd plugin.</li>
 
 
 <h2>
-Reference tutorials
+References
 </h2>
 <ul>
 <li>swirl: https://swirlstats.com/instructors.html <br>
