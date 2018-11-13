@@ -40,11 +40,11 @@ Interesting packages
 <h4>
 Data manipulation
 </h4>
-<p>
-dplyr: https://github.com/tidyverse/dplyr
-data.table: https://github.com/Rdatatable/data.table
-https://yihui.name/knitr/
-</p>
+<ul>
+    <li>dplyr: https://github.com/tidyverse/dplyr</li>
+    <li>data.table: https://github.com/Rdatatable/data.table</li>
+    <li>https://yihui.name/knitr/</li>
+</ul>
 
 
 
@@ -52,10 +52,10 @@ https://yihui.name/knitr/
 <h4>
 Visualisation
 <h4>
-<p>
-fromattable: https://github.com/renkun-ken/formattable
-ggplot2: https://github.com/tidyverse/ggplot2
-</p>
+<ul>
+<li>fromattable: https://github.com/renkun-ken/formattable</li>
+<li>ggplot2: https://github.com/tidyverse/ggplot2</li>
+</ul>
 
 
 
@@ -63,14 +63,14 @@ ggplot2: https://github.com/tidyverse/ggplot2
 <h4>
 Machine learning
 <h4>
-<p>
-h2o: https://cran.r-project.org/web/packages/h2o/index.html
-prophet; https://github.com/facebook/prophet
-caret: https://cran.r-project.org/web/packages/caret/index.html
-AnomalyDetection; https://github.com/twitter/AnomalyDetection
-mlr: https://github.com/mlr-org/mlr
-xgboost; https://github.com/tqchen/xgboost/tree/master/R-package
-</p>
+<ul>
+<li>h2o: https://cran.r-project.org/web/packages/h2o/index</li>.html
+<li>prophet; https://github.com/facebook/prophet</li>
+<li>caret: https://cran.r-project.org/web/packages/caret/index.html</li>
+<li>AnomalyDetection; https://github.com/twitter/AnomalyDetection</li>
+<li>mlr: https://github.com/mlr-org/mlr</li>
+<li>xgboost; https://github.com/tqchen/xgboost/tree/master/R-package</li>
+</ul>
 
 
 
@@ -78,9 +78,9 @@ xgboost; https://github.com/tqchen/xgboost/tree/master/R-package
 <h4>
 Text-mining
 <h4>
-<p>
-quanteda: https://github.com/quanteda/quanteda
-</p>
+<ul>
+<li>quanteda: https://github.com/quanteda/quanteda</li>
+</ul>
 
 
 
@@ -88,9 +88,9 @@ quanteda: https://github.com/quanteda/quanteda
 <h4>
 Financial
 <h4>
-<p>
-quantmod: http://www.quantmod.com/
-</p>
+<ul>
+<li>quantmod: http://www.quantmod.com/</li>
+</ul>
 
 
 
@@ -98,10 +98,10 @@ quantmod: http://www.quantmod.com/
 <h4>
 Web
 <h4>
-<p>
-shiny: http://shiny.rstudio.com/
-plotly: https://github.com/ropensci/plotly
-</p>
+<ul>
+<li>shiny: http://shiny.rstudio.com/</li>
+<li>plotly: https://github.com/ropensci/plotly</li>
+</ul>
 
 
 
@@ -109,13 +109,13 @@ plotly: https://github.com/ropensci/plotly
 <h2>
 Useful sites
 </h2>
-<p>
-https://www.rstudio.com/products/RStudio/
-The ide I used, I also likes eclipse with statsEd plugin.
+<ul>
+<li>https://www.rstudio.com/products/RStudio/ <br>
+The ide I used, I also likes eclipse with statsEd plugin.</li>
 
-https://github.com/rstudio/cheatsheets
-List of cheat sheets
-</p>
+<li>https://github.com/rstudio/cheatsheets <br>
+List of cheat sheets</li>
+</ul>
 
 
 
@@ -123,11 +123,11 @@ List of cheat sheets
 <h2>
 Reference tutorials
 </h2>
-<p>
-swirl: https://swirlstats.com/instructors.html
-An in R integrated tutorial. Installable as a package.
-listing: https://github.com/ujjwalkarn/DataScienceR
-List of useful sites
-advanced r: http://adv-r.had.co.nz/
-An online version of this book
-</p>
+<ul>
+<li>swirl: https://swirlstats.com/instructors.html <br>
+An in R integrated tutorial. Installable as a package.</li>
+<li>listing: https://github.com/ujjwalkarn/DataScienceR <br>
+List of useful sites</li>
+<li>advanced r: http://adv-r.had.co.nz/ <br>
+An online version of this book</li>
+</ul>
