@@ -110,11 +110,9 @@ Web
 Useful sites
 </h2>
 <ul>
-<li>https://www.rstudio.com/products/RStudio/ <br>
+<li>Rstudio: https://www.rstudio.com/products/RStudio/ <br>
 The ide I used, I also likes eclipse with statsEd plugin.</li>
 
-<li>https://github.com/rstudio/cheatsheets <br>
-List of cheat sheets</li>
 </ul>
 
 
@@ -130,4 +128,6 @@ An in R integrated tutorial. Installable as a package.</li>
 List of useful sites</li>
 <li>advanced r: http://adv-r.had.co.nz/ <br>
 An online version of this book</li>
+    <li>Cheat sheets: https://github.com/rstudio/cheatsheets <br>
+List of cheat sheets</li>
 </ul>
