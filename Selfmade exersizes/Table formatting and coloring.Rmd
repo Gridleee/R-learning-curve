@@ -1,0 +1,72 @@
+---
+title: "Table formatting and coloring"
+output: html_notebook
+---
+
+The goal here is to get at nicly formatted table with color which depent on the numbers.
+
+The link to the used data: <br>
+https://www.kaggle.com/szrlee/stock-time-series-20050101-to-20171231 <br>
+GOOGL_2006-01-01_to_2018-01-01.csv <br>
+If it downloads as a xls file, just rename it.
+
+First we need to add the libraries
+
+```{r eval=FALSE, include=FALSE}
+#if you haven't installed the packages
+install.packages("readr")
+install.packages("tidyr")
+install.packages("formattable")
+install.packages("DT")
+```
+
+
+```{r}
+#implementeren van libraries
+library("readr")
+library("tidyr")
+library("formattable")
+library("DT")
+```
+
+```{r}
+#Data invoegen
+numberdata <- read_csv("D:/R lessons/Selfmade exersizes/numberdata.csv")
+#if there are NA's, this will remove it
+numberdata <- drop_na(numberdata)
+```
+
+Now we have our data-set, we can use it for analysis and such.
+
+The first package I wanted to use here was formatteble.
+So lets import it and see what we can do.
+
+```{r eval=FALSE, include=FALSE}
+#lets first see the difference in showing the basic data
+head(numberdata)
+formattable(numberdata)
+```
+
+```{r}
+#I like the 'formattable(numberdata)' better, however it will show all data (thats why I won't show it in this markdown)
+# resolve this there is DT (package)
+head(numberdata)
+as.datatable(formattable(numberdata))
+```
+
+Woops, a little to much data.
+
+Lets try to get some color in the data.
+
+```{r}
+as.datatable(formattable(numberdata, list(area(col = 2:5) ~ color_tile("transparent", "red"))))
+```
+
+Seems to work, but I would like some more colors.
+Lets try again.
+
+```{r}
+as.datatable(formattable(numberdata, lapply(1:nrow(numberdata), function(row) {area(row, col = 2:5) ~ color_tile("red", "green")})))
+```
+
+That's what I wanted
