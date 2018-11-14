@@ -3,7 +3,7 @@ title: "Table formatting and coloring"
 output: html_notebook
 ---
 
-The goal here is to get at nicly formatted table with color which depent on the numbers.
+The goal here is to get at nicely formatted table with color which depend on the numbers.
 
 The link to the used data: <br>
 https://www.kaggle.com/szrlee/stock-time-series-20050101-to-20171231 <br>
@@ -23,15 +23,15 @@ install.packages("DT")
 
 ```{r}
 #implementeren van libraries
-library("readr")
-library("tidyr")
-library("formattable")
-library("DT")
+library("readr", lib.loc="~/R/R-3.5.1/library")
+library("tidyr", lib.loc="~/R/R-3.5.1/library")
+ library("formattable", lib.loc="~/R/R-3.5.1/library")
+library("DT", lib.loc="~/R/R-3.5.1/library")
 ```
 
 ```{r}
 #Data invoegen
-numberdata <- read_csv("D:/R lessons/Selfmade exersizes/numberdata.csv")
+numberdata <- read_csv("D:/R-learning-curve/Selfmade exersizes/numberdata.csv")
 #if there are NA's, this will remove it
 numberdata <- drop_na(numberdata)
 ```
@@ -70,3 +70,67 @@ as.datatable(formattable(numberdata, lapply(1:nrow(numberdata), function(row) {a
 ```
 
 That's what I wanted
+
+I looked around for other formatting packages and fount 'kableExtra'. This one can be integrated with 'formattable', but can also work on its own. Lets try.
+
+```{r eval=FALSE, include=FALSE}
+#instal package
+install.packages("kableExtra")
+```
+
+
+```{r}
+#add library
+library("knitr", lib.loc="~/R/R-3.5.1/library")
+library("kableExtra", lib.loc="~/R/R-3.5.1/library")
+library("dplyr", lib.loc="~/R/R-3.5.1/library")
+library("dbplyr", lib.loc="~/R/R-3.5.1/library")
+```
+
+First I run the example code to see if it works and how it works.
+Credits: https://haozhu233.github.io/kableExtra/use_kableExtra_with_formattable.html
+
+```{r}
+mtcars[1:5, 1:4] %>%
+  mutate(
+    car = row.names(.),
+    mpg = color_tile("white", "orange")(mpg),
+    cyl = cell_spec(cyl, "html", angle = (1:5)*60,
+                    background = "red", color = "white", align = "center"),
+    disp = ifelse(disp > 200,
+                  cell_spec(disp, "html", color = "red", bold = T),
+                  cell_spec(disp, "html", color = "green", italic = T)),
+    hp = color_bar("lightgreen")(hp)
+  ) %>%
+  select(car, everything()) %>%
+  kable("html", escape = F) %>%
+  kable_styling("hover", full_width = F) %>%
+  column_spec(5, width = "3cm") %>%
+  add_header_above(c(" ", "Hello" = 2, "World" = 2))
+```
+
+Let's see if I can do something with my own data-set, without crashing it.
+
+```{r}
+options(knitr.table.format = "html")
+numberdata[, 1:5] %>%
+  mutate(
+    Open = cell_spec(numberdata$Open, "html", color = "red", background = ifelse(Open > (High - Low) / 2 +Low, "green", "blue")),
+    Close = cell_spec(numberdata$Close, "html", color = "red", background = ifelse(Close > (High - Low) / 2 +Low, "green", "blue")),
+    High = cell_spec(numberdata$High , "html",color = "black", background = ifelse(6 > High - Low, "lightgreen", "red"))
+    ) %>%
+  select(Date, Open, High, Low, Close) %>%
+  kable(format = "html", escape = F) %>%
+  kable_styling("hover", full_width = F) %>%
+  row_spec(0, angle = -45) %>%
+  add_header_above(c(" " = 2, "Rates" = 2, "")) %>%
+  add_header_above(c(" ", "Live" = 4)) %>%
+  scroll_box(width = "100%", height = "300px")
+
+```
+
+That's the last thing I do with this. <br>
+
+I like 'kableExtra' better than 'formattable', because it feels like I have more control over the data. Also 'kableExtra' is not as resource-heavy as 'formattable' (no warnings about to much dat). <br>
+
+Switchs instead of ifelse would give me a lot more options

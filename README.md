@@ -16,7 +16,7 @@ For the internship I had to design a Power BI setting.
 Power BI has a wide arrange of visualization possibilities, but they are quit limited.
 That's where my interest in R began.
 
-Now I know the posibilities of R, I'm even more driven to learn it.
+Now I know the possibilities of R, I'm even more driven to learn it.
 </p>
 
 
@@ -38,9 +38,9 @@ Goals
 <h2>
 Interesting packages
 </h2>
-<h4>
+<h3>
 Data manipulation
-</h4>
+</h3>
 <ul>
     <li>dplyr: https://github.com/tidyverse/dplyr</li>
     <li>data.table: https://github.com/Rdatatable/data.table</li>
@@ -50,9 +50,9 @@ Data manipulation
 
 
 
-<h4>
-Visualisation
-<h4>
+<h3>
+Visualization
+</h3>
 <ul>
 <li>fromattable: https://github.com/renkun-ken/formattable</li>
 <li>ggplot2: https://github.com/tidyverse/ggplot2</li>
@@ -61,9 +61,9 @@ Visualisation
 
 
 
-<h4>
+<h3>
 Machine learning
-<h4>
+</h3>
 <ul>
 <li>h2o: https://cran.r-project.org/web/packages/h2o/index.html</li>
 <li>prophet: https://github.com/facebook/prophet</li>
@@ -76,9 +76,9 @@ Machine learning
 
 
 
-<h4>
+<h3>
 Text-mining
-<h4>
+</h3>
 <ul>
 <li>quanteda: https://github.com/quanteda/quanteda</li>
 </ul>
@@ -86,9 +86,9 @@ Text-mining
 
 
 
-<h4>
+<h3>
 Financial
-<h4>
+</h3>
 <ul>
 <li>quantmod: http://www.quantmod.com/</li>
 </ul>
@@ -96,9 +96,9 @@ Financial
 
 
 
-<h4>
+<h3>
 Web
-<h4>
+</h3>
 <ul>
 <li>shiny: http://shiny.rstudio.com/</li>
 <li>plotly: https://github.com/ropensci/plotly</li>
