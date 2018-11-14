@@ -71,6 +71,7 @@ Machine learning
 <li>AnomalyDetection: https://github.com/twitter/AnomalyDetection</li>
 <li>mlr: https://github.com/mlr-org/mlr</li>
 <li>xgboost: https://github.com/tqchen/xgboost/tree/master/R-package</li>
+<li>e1071: https://cran.r-project.org/web/packages/e1071/</li>
 </ul>
 
 
@@ -110,11 +111,12 @@ Web
 <h2>
 Useful sites
 </h2>
-<ul>
+<ul
 <li>Rstudio: https://www.rstudio.com/products/RStudio/ <br>
 The ide I used, I also likes eclipse with statsEd plugin.</li>
 
 </ul>
+
 
 
 
@@ -131,4 +133,6 @@ List of useful sites</li>
 An online version of this book</li>
     <li>Cheat sheets: https://github.com/rstudio/cheatsheets <br>
 List of cheat sheets</li>
+  <li>Machine learning: https://cran.r-project.org/doc/contrib/YanchangZhao-refcard-data-mining.pdf<br>
+  Cheat sheet to find machine learning commands</li>
 </ul>
