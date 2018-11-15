@@ -1,6 +1,8 @@
 ---
 title: "Table formatting and coloring"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 The goal here is to get at nicely formatted table with color which depend on the numbers.

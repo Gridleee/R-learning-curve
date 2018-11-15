@@ -1,0 +1,129 @@
+---
+title: "Apriori, Sequential patterns and outliers"
+output:
+  html_document:
+    df_print: paged
+---
+<p>
+To be sure I have clean data, I will use the datasets from R base.
+
+I found this sheet about machine learning: https://cran.r-project.org/doc/contrib/YanchangZhao-refcard-data-mining.pdf <br>
+So for now I limed myself to this sheets recommendations.
+
+</p>
+
+Lets start
+
+Libraries:
+```{r eval=FALSE, include=FALSE}
+#instal
+install.packages("arules")
+install.packages("arulesViz")
+install.packages("TraMineR")
+install.packages("outliers")
+
+```
+
+
+```{r}
+#add
+library("arules", lib.loc="~/R/R-3.5.1/library")
+library("TraMineR", lib.loc="~/R/R-3.5.1/library")
+library("outliers", lib.loc="~/R/R-3.5.1/library")
+library("arulesViz", lib.loc="~/R/R-3.5.1/library")
+
+```
+
+Now lets start trying things.
+
+```{r}
+#Apriori
+data("Groceries")
+str(Groceries)
+head(Groceries@itemInfo, n=12)
+summary(Groceries)
+rules <- apriori(Groceries, parameter = list(supp = 0.001, conf = 0.80))
+inspect(rules[1:10])
+```
+
+```{r}
+plot(rules[1:20],
+     method = "graph",
+     control = list(type = "items"))
+
+plot(rules[1:20],
+     method = "paracoord",
+     control = list(reorder = TRUE))
+```
+
+Lets say this: it does look interesting, but I have no idea what I'm doing or looking at. I'm going to the next machine learning method. This will be something for in the future.<br>
+
+Also, I'm not gone use the arules-package anymore.
+
+```{r}
+#Sequential patterns
+data("actcal.tse")
+actcal.eseq <- seqecreate(actcal.tse)
+
+fsubseq <- seqefsub(actcal.eseq, min.support=25)
+fsubseq <- seqefsub(actcal.eseq, pmin.support=0.01)
+
+fsubseq[1:10]
+
+fsubseq <- seqefsub(actcal.eseq, min.support=10, constraint=seqeconstraint(age.min=6, age.max=9))
+
+fsubseq[1:10]
+
+fsubseq <- seqefsub(actcal.eseq, min.support=10, constraint=seqeconstraint(max.gap=2, window.size=6))
+
+fsubseq[1:20]
+
+```
+
+At least I understand what I'm doing. Lets try to plot some things.
+
+```{r}
+data("actcal.tse")
+actcal.eseq <- seqecreate(actcal.tse)
+
+fsubseq <- seqefsub(actcal.eseq, min.support=25)
+fsubseq <- seqefsub(actcal.eseq, pmin.support=0.01)
+
+fsubseq[1:10]
+
+fsubseq <- seqefsub(actcal.eseq, min.support=10, constraint=seqeconstraint(age.min=6, age.max=9))
+
+fsubseq[1:10]
+
+fsubseq <- seqefsub(actcal.eseq, min.support=10, constraint=seqeconstraint(max.gap=2, window.size=6))
+
+fsubseq[1:20]
+
+plot(fsubseq[["data"]][["Support"]], fsubseq[["data"]][["Count"]])
+```
+
+I can't combine the subseq and the data-table to one. <br>
+It looks like I can get outliers from this data. Lets try
+
+```{r}
+dat <- fsubseq$data
+outlier(dat)
+mean(dat$Support)
+mean(dat$Count)
+
+#remove outliers
+dato <- rm.outlier(dat)
+outlier(dato)
+mean(dato$Support)
+mean(dato$Count)
+
+while(outlier(dato$Count) > mean(dato$Count) + 50){
+  dato <- rm.outlier(dato)
+}
+
+plot(dato$Support, dato$Count)
+```
+
+That would work with real data. <br>
+
+On to the next document.
