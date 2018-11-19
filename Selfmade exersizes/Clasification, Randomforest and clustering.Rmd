@@ -1,6 +1,8 @@
 ---
-title: "R Notebook"
-output: html_notebook
+title: "Clasification, Randomforest and clustering"
+output:
+  html_document:
+    df_print: paged
 ---
 
 It's time to get in to classification <br>
@@ -10,6 +12,7 @@ libraries:
 install.packages("rpart")
 install.packages("randomForest")
 install.packages("e1071")
+install.packages("cluster")
 
 ```
 
@@ -17,6 +20,7 @@ install.packages("e1071")
 library("rpart", lib.loc="~/R/R-3.5.1/library")
 library("randomForest", lib.loc="~/R/R-3.5.1/library")
 library("e1071", lib.loc="~/R/R-3.5.1/library")
+library("cluster", lib.loc="~/R/R-3.5.1/library")
 
 ```
 
@@ -72,13 +76,27 @@ plot(outlier(iris.rf), type="h", col=c("red", "green", "blue")[as.numeric(iris$S
 MDSplot(iris.rf, iris$Species, palette=rep(1, 3), pch=as.numeric(iris$Species))
 ```
 
-<h4>Support Vector Machine</h4>
+<h4>Clustering</h4>
 
 ```{r}
-
+#kmeans
+data(kyphosis)
+d <-kmeans(kyphosis[2:4], 10, nstart = 25)
+plot(kyphosis[2:4], col = d$cluster)+ points(d$centers, col = 1:4, pch = 8)
 ```
 
+```{r}
+#hierchical
+a <- agnes(kyphosis, metric = "manhattan", stand = TRUE)
+plot(a)
 
+b <- diana(kyphosis, metric = "manhattan", stand = TRUE)
+print(b)
+plot(b)
+```
 
+I like the 'cluster' package. As you can tell, it is specialized in clustering. I used agnes and diana here, but the packages also has 'mona(only binary)' and 'clara(partitioning/ like kmeans)'.
+
+I will do plotting alfter machine learning.
 
 
