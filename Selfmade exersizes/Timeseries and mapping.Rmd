@@ -1,0 +1,65 @@
+---
+title: "Timeseries and mapping"
+output:
+  html_document:
+    df_print: paged
+---
+
+Libraries:
+```{r eval=FALSE, include=FALSE}
+install.packages("forecast")
+install.packages("tm")
+install.packages("tidyr")
+install.packages("rvest")
+install.packages("ggmap")
+install.packages("htmlwidgets")
+install.packages("widgetframe")
+install.packages("leaflet")
+
+```
+
+```{r}
+library("forecast", lib.loc="~/R/R-3.5.1/library")
+library("tm", lib.loc="~/R/R-3.5.1/library")
+library("tidyr", lib.loc="~/R/R-3.5.1/library")
+library("rvest", lib.loc="~/R/R-3.5.1/library")
+library("ggmap", lib.loc="~/R/R-3.5.1/library")
+library("htmlwidgets", lib.loc="~/R/R-3.5.1/library")
+library("widgetframe", lib.loc="~/R/R-3.5.1/library")
+library("leaflet", lib.loc="~/R/R-3.5.1/library")
+
+```
+
+Time series
+```{r}
+Passagers <- AirPassengers
+plot(Passagers)
+
+Seasonal <- decompose(Passagers, type = "additive")
+plot(Seasonal$seasonal)
+
+seasonplot(Passagers, year.labels = TRUE, col=rainbow(18))
+
+aa <- auto.arima(Passagers)
+ab <- forecast(aa, h = 50, level = c(90, 70))
+plot(ab)
+```
+
+For me (and I think for most) these plots are the easiest to understand.
+
+Mapping
+```{r}
+tdist <- read_html("https://en.wikipedia.org/wiki/List_of_countries_by_carbon_dioxide_emissions")
+data <- tdist %>% html_node("table.wikitable") %>% html_table()
+
+loc <- data$Country
+
+geocord <- geocode(loc, source = "dsk")
+
+leaflet(geocord) %>% addTiles() %>% addMarkers(
+  clusterOptions = markerClusterOptions()
+)
+```
+
+
+

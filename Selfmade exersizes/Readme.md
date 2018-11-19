@@ -18,23 +18,23 @@
 </ul>
 
 <h4>
-
+  Apriori, sequence and outliers
 </h4>
 <ul>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
+  <li>arules</li>
+  <li>arulesViz</li>
+  <li>TraMineR</li>
+  <li>outliers</li>
 </ul>
 
 <h4>
-
+  Clasification, Randomforest and Clustering
 </h4>
 <ul>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
+  <li>rpart</li>
+  <li>randomForest</li>
+  <li>e1071</li>
+  <li>cluster</li>
 </ul>
 
 <h4>
