@@ -38,11 +38,12 @@
 </ul>
 
 <h4>
-
+Timeseries and mapping
 </h4>
 <ul>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
+  <li>ggplot2</li>
+  <li>tidyr</li>
+  <li>rvest</li>
+  <li>RColorBrewer</li>
+  <li>grid</li>
 </ul>
