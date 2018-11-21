@@ -16,65 +16,24 @@ All_Champions_Stats <- read_excel("All Champions Stats.xlsx")
 attach(All_Champions_Stats)
 ```
 
-Grouping:
+Base HP against AR
 ```{r}
-Range <- filter(All_Champions_Stats, TYPE == "Ranged")
-Melee <- filter(All_Champions_Stats, TYPE != "Ranged")
 
-#RANGE
-RArtillery <- filter(Range, PRIMARY == "Artillery")
-RBattlemage <- filter(Range, PRIMARY == "Battlemage")
-RBurst <- filter(Range, PRIMARY == "Burst")
-RCatcher <- filter(Range, PRIMARY == "Catcher")
-RDiver <- filter(Range, PRIMARY == "Diver")
-REnchanter <- filter(Range, PRIMARY == "Enchanter")
-RJuggernaut <- filter(Range, PRIMARY == "Juggernaut")
-RMarksman <- filter(Range, PRIMARY == "Marksman")
-RSpecialist <- filter(Range, PRIMARY == "Specialist")
-
-#MELEE
-MAssassin <- filter(Melee, PRIMARY == "Assassin")
-MBattlemage <- filter(Melee, PRIMARY == "Battlemage")
-MSkirmisher <- filter(Melee, PRIMARY == "Skirmisher")
-MCatcher <- filter(Melee, PRIMARY == "Catcher")
-MDiver <- filter(Melee, PRIMARY == "Diver")
-MEnchanter <- filter(Melee, PRIMARY == "Enchanter")
-MJuggernaut <- filter(Melee, PRIMARY == "Juggernaut")
-MVanguard <- filter(Melee, PRIMARY == "Vanguard")
-MSpecialist <- filter(Melee, PRIMARY == "Specialist")
-MWarden <- filter(Melee, PRIMARY == "Warden")
+ggplot(All_Champions_Stats, aes(All_Champions_Stats$HP, All_Champions_Stats$AR, colour=All_Champions_Stats$NAME, label = All_Champions_Stats$NAME, Type_group = All_Champions_Stats$TYPE)) + geom_point(size=2) + geom_text(hjust = -0.1) + theme(legend.position="none")
 
 ```
 
-Base stats:
+HP agains AR trough levels
 ```{r}
-#HP
-ggplot(RArtillery, aes(RArtillery$HP, RArtillery$NAME)) + geom_bar(position="dodge", stat="identity")
-
-
-
-ggplot(RBattlemage, aes(RBattlemage$HP, RBattlemage$NAME)) + geom_point()
-ggplot(RBurst, aes(RBurst$HP, RBurst$NAME)) + geom_point()
-ggplot(RCatcher, aes(RCatcher$HP, RCatcher$NAME)) + geom_point()
-ggplot(RDiver, aes(RDiver$HP, RDiver$NAME)) + geom_point()
-ggplot(REnchanter, aes(REnchanter$HP, REnchanter$NAME)) + geom_point()
-ggplot(RJuggernaut, aes(RJuggernaut$HP, RJuggernaut$NAME)) + geom_point()
-ggplot(RMarksman, aes(RMarksman$HP, RMarksman$NAME)) + geom_point()
-ggplot(RSpecialist, aes(RSpecialist$HP, RSpecialist$NAME)) + geom_point()
-ggplot(MAssassin, aes(MAssassin$HP, MAssassin$NAME)) + geom_point()
-ggplot(MBattlemage, aes(MBattlemage$HP, MBattlemage$NAME)) + geom_point()
-ggplot(MSkirmisher, aes(MSkirmisher$HP, MSkirmisher$NAME)) + geom_point()
-ggplot(MCatcher, aes(MCatcher$HP, MCatcher$NAME)) + geom_point()
-ggplot(MDiver, aes(MDiver$HP, MDiver$NAME)) + geom_point()
-ggplot(MEnchanter, aes(MEnchanter$HP, MEnchanter$NAME)) + geom_point()
-ggplot(MJuggernaut, aes(MJuggernaut$HP, MJuggernaut$NAME)) + geom_point()
-ggplot(MVanguard, aes(MVanguard$HP, MVanguard$NAME)) + geom_point()
-ggplot(MSpecialist, aes(MSpecialist$HP, MSpecialist$NAME)) + geom_point()
-ggplot(MWarden, aes(MWarden$HP, MWarden$NAME)) + geom_point()
+Level = 0
+manipulate(
+  ggplot(All_Champions_Stats, aes(All_Champions_Stats$HP + All_Champions_Stats$HPPLUS * Level, All_Champions_Stats$AR + All_Champions_Stats$ARPLUS * Level, colour=All_Champions_Stats$NAME, label = All_Champions_Stats$NAME, Type_group = All_Champions_Stats$TYPE)) + geom_point(size=2) + geom_text(hjust = -0.1) + theme(legend.position="none"),
+  Level = slider(0,18)
+  )
 
 ```
 
-Sadly the loop did not work.
+I stopped here for a moments. Apparently the 'manipulate' function doesn't work in a notebook or after markdown. I have a feeling 'shiny' would make visual interaction possible.
 
 
 
