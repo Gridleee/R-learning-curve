@@ -1,0 +1,9 @@
+.champscroll{
+  height:500px;
+  width:150px;
+  overflow:auto;
+}
+
+.marg{
+  padding: 5px;
+}
