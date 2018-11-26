@@ -1,0 +1,149 @@
+---
+title: "Text mining"
+output:
+  html_document:
+    df_print: paged
+---
+
+I'm following this blog:
+https://www.springboard.com/blog/text-mining-in-r/
+
+```{r}
+library(RSQLite)
+library(tm)
+library(SnowballC)
+library(wordcloud)
+library(RColorBrewer)
+library(syuzhet)
+library(ggplot2)
+library(dplyr)
+
+
+```
+
+
+```{r}
+db <- dbConnect(dbDriver("SQLite"), "D:/R-learning-curve/Selfmade exersizes/textminingdata/database.sqlite")
+
+emailHillary <- dbGetQuery(db, "SELECT ExtractedBodyText EmailBody FROM Emails e INNER JOIN Persons p ON e.SenderPersonId=P.Id WHERE p.Name='Hillary Clinton' AND e.ExtractedBodyText !=  'ORDER BY RANDOM()'")
+
+emailRaw <- paste(emailHillary$EmailBody, collapse=" // ")
+
+dbDisconnect(db)
+```
+
+In the example they messed up a little with the quotation marks. Above works.
+
+Before textmining its important to have clean data. That means: <br>
+      <li>Convert the text to lower case, so that words like “write” and “Write” are considered the same word for analysis</li>
+      <li>Remove numbers</li>
+      <li>Remove English stopwords e.g “the”, “is”, “of”, etc</li>
+      <li>Remove punctuation e.g “,”, “?”, etc</li>
+      <li>Eliminate extra white spaces</li>
+      <li>Stemming our text</li>
+
+Make corpus:
+```{r}
+docs <- Corpus(VectorSource(emailRaw))
+
+```
+
+Cleaning dat:
+```{r}
+# Convert the text to lower case
+docs <- tm_map(docs, content_transformer(tolower))
+# Remove numbers
+docs <- tm_map(docs, removeNumbers)
+# Remove english common stopwords
+docs <- tm_map(docs, removeWords, stopwords("english"))
+# Remove punctuations
+docs <- tm_map(docs, removePunctuation)
+# Eliminate extra white spaces
+docs <- tm_map(docs, stripWhitespace)
+#stemming
+docs <- tm_map(docs, stemDocument)
+# Remove additional stopwords
+docs <- tm_map(docs, removeWords, c("clintonemailcom", "stategov", "hrod"))
+
+
+```
+
+
+```{r}
+dtm <- TermDocumentMatrix(docs)
+m <- as.matrix(dtm)
+head(m)
+v <- sort(rowSums(m),decreasing=TRUE)
+head(v)
+d <- data.frame(word = names(v),freq=v)
+head(d, 10)
+```
+
+I have printed all actions, to see what is happening
+
+Lets make the wordcloud
+
+```{r message=FALSE, warning=FALSE}
+par(bg="grey30")
+wordcloud(d$word, d$freq, col=terrain.colors(length(d$word), alpha=0.9), random.order=FALSE, rot.per=0.3 )
+title(main = "Hillary Clinton’s Most Used Used in the Emails", font.main = 1, col.main = "cornsilk3", cex.main = 1.5)
+
+```
+
+
+Sentment Analysis (determan if a text is positive or negative)
+
+```{r}
+# get data
+db <- dbConnect(dbDriver("SQLite"), "D:/R-learning-curve/Selfmade exersizes/textminingdata/database.sqlite")
+Emails <- data.frame(dbGetQuery(db,"SELECT * FROM Emails"))
+dbDisconnect(db)
+
+```
+
+```{r}
+p<-get_nrc_sentiment(Emails$RawText)
+head(p)
+td<-data.frame(t(p))
+head(td)
+td_new <- data.frame(rowSums(td[2:7945]))
+head(td_new)
+#The function rowSums computes column sums across rows for each level of a grouping variable.
+#Transformation and cleaning
+names(td_new)[1] <- "count"
+td_new <- cbind("sentiment" = rownames(td_new), td_new)
+rownames(td_new) <- NULL
+td_new2<-td_new[1:8,]
+td_new2
+```
+
+
+To visualize:
+```{r}
+qplot(sentiment, data=td_new2, weight=count, geom="bar",fill=sentiment)+ggtitle("Email sentiments")
+```
+
+
+Lets try something on my own:
+```{r}
+arrange(d, desc(d$freq))
+dp <- d[1:10,]
+
+ggplot(dp, aes(dp$word, dp$freq)) + geom_bar(stat="identity") + theme(axis.text.x=element_text(angle=45, hjust=1)) + labs(x = "word", y = "count")
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

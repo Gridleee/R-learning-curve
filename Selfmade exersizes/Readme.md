@@ -47,3 +47,12 @@ Timeseries and mapping
   <li>RColorBrewer</li>
   <li>grid</li>
 </ul>
+
+<h4>
+League of legends
+</h4>
+<ul>
+  <li>ggplot2</li>
+  <li>readxl</li>
+  <li>dplyr</li>
+</ul>
