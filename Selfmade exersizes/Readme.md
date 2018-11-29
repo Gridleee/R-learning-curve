@@ -56,3 +56,17 @@ League of legends
   <li>readxl</li>
   <li>dplyr</li>
 </ul>
+
+<h4>
+Textmining
+</h4>
+<ul>
+  <li>ggplot2</li>
+  <li>dplyr</li>
+  <li>RSQLite</li>
+  <li>wordcloud</li>
+  <li>ggplot2</li>
+  <li>RColorBrewer</li>
+  <li>syuzhet</li>
+  <li>tm</li>
+</ul>
