@@ -14,7 +14,6 @@
   <li>dplyr</li>
   <li>knitr</li>
   <li>kableExtra</li>
-
 </ul>
 
 <h4>
@@ -48,14 +47,11 @@ Timeseries and mapping
   <li>grid</li>
 </ul>
 
-<h4>
-League of legends
-</h4>
-<ul>
-  <li>ggplot2</li>
-  <li>readxl</li>
-  <li>dplyr</li>
-</ul>
+<p>
+  I realized I liked plotting a lot. It makes it much more clear what I'm doing. So I decided to digg into ggplot2.
+  For me it's easier to understand plots when it's combined with a nice UI (that just makes more sense). So I also digged into shiny and added 'R to d3' to my wish (to learn) list.
+  I placed my exercises of these two subjects in the 'per package' folder.
+  </p>
 
 <h4>
 Textmining

@@ -2,6 +2,7 @@
   Swirl is a base-R-tutorial within R itself.<br>
 
   It is good for beginners <br>
+  For me it was a bit basic, so I moved on. <br>
 
   <b>Good points</b>
   <ul>

@@ -1,0 +1,131 @@
+---
+title: "Test dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    theme: cerulean
+    orientation: rows
+    vertical_layout: fill
+---
+
+https://www.youtube.com/watch?v=_a4S4tq62OE
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(readxl)
+library(dplyr)
+library(DT)
+library(ggplot2)
+library(rpivotTable)
+
+```
+
+```{r}
+Totalen <- read_excel("D:/Computefly-backend/Totalen.xlsx", col_types = c("numeric", "text", "text", "numeric", "date", "date", "date", "numeric", "numeric"))
+```
+
+```{r}
+mycolors <- c("blue", "#FFC125", "darkgreen", "darkorange")
+```
+
+Interactive Data Visualisation
+=============================
+
+Row
+-----------------------------
+###row
+
+```{r}
+valueBox(paste0("Falure"), color = "warning")
+```
+
+###Titel1
+
+```{r}
+valueBox(length(Totalen$Naam), icon = "fa-user")
+```
+
+###title3
+
+```{r}
+gauge(round(mean(Totalen$Bedrag),
+            digits = 2),
+            min = 0, 
+            max = 500, 
+            gaugeSectors(success = c(200, 1000),
+                         warning = c(100, 200), 
+                         danger = c(0, 100), 
+                         colors = c('green', 'yellow', 'red')))
+```
+
+###Title21
+
+```{r}
+valueBox(sum(Totalen$Klant_nr == 111),
+         icon = 'fa-building')
+```
+
+###Title22
+
+```{r}
+valueBox(sum(Totalen$Klant_nr == 112),
+         icon = 'fa-building')
+```
+
+###Title23
+
+```{r}
+valueBox(sum(Totalen$Klant_nr == 113),
+         icon = 'fa-building')
+```
+
+Row
+--------------------------------------
+
+###plot1
+
+```{r}
+p1 <- ggplot(Totalen, aes(Totalen$Naam, Totalen$Bedrag)) + geom_col()
+p1
+```
+
+###plot2
+
+```{r}
+p1 <- ggplot(Totalen, aes(Totalen$Naam, Totalen$Bedrag)) + geom_col(fill=rainbow(7))
+p1
+```
+
+Table
+====================================
+
+```{r}
+datatable(Totalen,
+          caption = "table",
+          rownames = T,
+          filter = "top",
+          options = list(pageLength = 25)
+)
+```
+
+Pivot Table
+======================================
+
+```{r}
+rpivotTable(Totalen, 
+            aggregatorName = "Sum",
+            rows = c("Klant_nr", "Datum verzonden"),
+            rendererName = "Table")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
